@@ -2,9 +2,9 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      text: "this will change",
-      items: "",
 
+      text: "",
+      items: [],
       apiResponse: ""
 
     };
@@ -26,11 +26,15 @@ class App extends React.Component {
       text: e.target.value
     });
   }
-  handleClick() {
 
-    this.setState({
-      items: this.state.text
-    });
+  handleClick() {
+    const newItem = {
+      text: this.state.text
+    };
+
+    this.setState(state => ({
+      items: state.items.concat(newItem)
+    }));
   }
 
   render() {
@@ -38,15 +42,20 @@ class App extends React.Component {
       "div",
       null,
       React.createElement(
-        "h1",
+        "ul",
         null,
-        this.state.items
+        this.state.items.map(item => React.createElement(
+          "li",
+          null,
+          item.text
+        ))
       ),
-      React.createElement("input", { type: "text", onChange: this.handleChange, name: "enter" }),
+      React.createElement("input", { type: "text", onChange: this.handleChange }),
       React.createElement(
         "button",
         { onClick: this.handleClick },
-        "click"
+        "Add ",
+        this.state.items.length + 1
       ),
       React.createElement(
         "p",

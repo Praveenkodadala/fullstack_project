@@ -2,9 +2,9 @@ class App extends React.Component{
   constructor(props){
   super(props)
   this.state ={
-  text :"this will change",
-  items : "",
-  
+    
+    text:"",
+    items : [],
   apiResponse: ""
   
   }
@@ -30,19 +30,28 @@ componentWillMount() {
         text : e.target.value
       })
     }
+
     handleClick(){
-  
-      this.setState({
-        items: this.state.text
-      })
+      const newItem = {
+        text : this.state.text
+      } 
+
+      this.setState(state=>({
+        items: state.items.concat(newItem)
+      }))
     
-    }
+  }
     
   render(){
     return (<div>
-      <h1>{this.state.items}</h1>
-     <input type = "text"   onChange={this.handleChange } name="enter" />
-      <button onClick={this.handleClick}>click</ button>
+ 
+      <ul>
+        {this.state.items.map(item => (
+          <li >{item.text}</li>
+        ))}
+      </ul>      
+     <input type = "text"   onChange={this.handleChange } />
+     <button onClick = {this.handleClick}>Add {this.state.items.length + 1}</button>
         <p> {this.state.apiResponse} </p>
         
       </div>)
