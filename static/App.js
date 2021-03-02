@@ -1,4 +1,8 @@
-class App extends React.Component {
+import React from "react";
+import ReactDOM from "react-dom";
+import { NavBar } from './NavBar';
+
+class ProfilePage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -41,6 +45,12 @@ class App extends React.Component {
     return React.createElement(
       "div",
       null,
+      React.createElement(NavBar, null),
+      React.createElement(
+        "h1",
+        null,
+        "Todo List"
+      ),
       React.createElement(
         "ul",
         null,
@@ -66,7 +76,6 @@ class App extends React.Component {
       )
     );
   }
-
 }
 
-ReactDOM.render(React.createElement(App, null), document.getElementById('root'));
+ReactDOM.render(React.createElement(ProfilePage, null), document.getElementById("root"));
