@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { NavBar } from './NavBar';
+import axios from "axios";
 
 class ProfilePage extends React.Component {
   constructor(props) {
@@ -9,12 +10,14 @@ class ProfilePage extends React.Component {
 
       text: "",
       items: [],
-      apiResponse: ""
+      apiResponse: "",
+      completionstatus: "Hello"
 
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.postDataToServer = this.postDataToServer.bind(this);
   }
 
   callAPI() {
@@ -41,11 +44,23 @@ class ProfilePage extends React.Component {
     }));
   }
 
+  postDataToServer() {
+
+    axios.post('http://localhost:3000/api/user?name=' + document.getElementById('name').value + "&gender=" + document.getElementById('gender').value).then(response => {
+      this.setState({ completionstatus: response.data });
+    }).catch(err => {
+      this.setState({
+        completionstatus: "Oparation failue"
+      });
+    });
+  }
+
   render() {
     return React.createElement(
       "div",
       null,
       React.createElement(NavBar, null),
+      React.createElement("br", null),
       React.createElement(
         "h1",
         null,
@@ -73,6 +88,22 @@ class ProfilePage extends React.Component {
         " ",
         this.state.apiResponse,
         " "
+      ),
+      React.createElement("br", null),
+      "Enter the name",
+      React.createElement("input", { type: "text", id: "name" }),
+      "Enter the gender",
+      React.createElement("input", { type: "text", id: "gender" }),
+      React.createElement("br", null),
+      React.createElement(
+        "button",
+        { onClick: this.postDataToServer },
+        "Post Data"
+      ),
+      React.createElement(
+        "span",
+        null,
+        this.state.completionstatus
       )
     );
   }
