@@ -8,8 +8,8 @@ let userCollection = [];
 router.post('/', (req, res)=>{
   
     let newUser = new User({
-  "name" : req.body.name,
-  "gender" : req.body.gender
+  "name" : req.query.name,
+  "gender" : req.query.gender
     })
 
     userCollection.push(newUser);

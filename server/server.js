@@ -12,8 +12,13 @@ const port = process.env.PORT||3000
 app.use(express.json());
 app.use(express.urlencoded());
 
-app.use('/testapi', testAPI )
+app.use('/testapi', testAPI );
 app.use('/api', testRouter);
+
+
+// app.get("/api/users", (req, res) => {
+//     res.sendFile(__dirname + "/pra.html");
+// });
 
 app.use(express.static('dist'))
 
