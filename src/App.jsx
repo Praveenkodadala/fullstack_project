@@ -10,14 +10,25 @@ class ProfilePage extends React.Component {
     super(props)
     this.state = {
 
-    
       completionstatus: "Hello",
+      apiResponse: "check",
 
     }
 
    
     this.postDataToServer = this.postDataToServer.bind(this)
 
+  }
+
+
+  callAPI() {
+     fetch("http://localhost:3000/api/users")
+     .then(res => res.text())
+      .then(res => this.setState({ apiResponse: res }));
+  }
+
+  componentDidUpdate() {
+    this.callAPI();
   }
 
   postDataToServer(){
@@ -49,6 +60,8 @@ class ProfilePage extends React.Component {
         <br />
         <button onClick={this.postDataToServer}>Post Data</button>
         <span>{this.state.completionstatus}</span>
+        <br/>
+        <p> {this.state.apiResponse} </p>
 
       </div>
 
