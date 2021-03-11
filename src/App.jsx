@@ -31,7 +31,7 @@ class ProfilePage extends React.Component {
 
   postDataToServer(){
         
-    axios.post('http://localhost:3000/api/users?name='+document.getElementById('name').value+"&docVersionNumber="+document.getElementById('number').value+"&reasonsForChange="+document.getElementById('reason').value+'&changeRequestApprovedBy='+document.getElementById('approved').value)
+    axios.post('http://localhost:3000/api/users?docVersionNumber='+document.getElementById('number').value+"&reasonsForChange="+document.getElementById('reason').value+'&changeRequestApprovedBy='+document.getElementById('approved').value+'&dateOfChagneRequest'+document.getElementById('date').value+"&proposedChange="+document.getElementById('proposed').value+"&existingSystem="+document.getElementById('existing').value)
     .then(response=>{
       console.log(response)
         this.setState({completionstatus : response.data})
@@ -50,17 +50,17 @@ class ProfilePage extends React.Component {
         <h1>SIC Control</h1>
 
 
-Current Document version Number <input type = "text" id="number"></input>
+Current Document version Number: <input type = "text" id="number"></input>
 <br />
-Reason(s) for Change <input type = "text" id = "reason"></input>
+Reason(s) for Change : <input type = "text" id = "reason"></input>
 <br />
 Change request approved by: <input type = "text" id="approved" ></input>
-
-
 <br />
-Enter the name<input type="text" id="name"></input>
-{/* <br />
-Enter the gender<input type="text" id="gender"></input> */}
+Date of change request : <input type = "text" id= "date"></input>
+<br />
+Proposed change : <input type = "text" id="proposed"></input>
+<br / >
+existingSystem : <input type = "text" id="existing"></input>
 <br />
 <button onClick={this.postDataToServer}>Post Data</button>
 <span>{this.state.completionstatus}</span>

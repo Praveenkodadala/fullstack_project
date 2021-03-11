@@ -25,7 +25,7 @@ class ProfilePage extends React.Component {
 
   postDataToServer() {
 
-    axios.post('http://localhost:3000/api/users?name=' + document.getElementById('name').value + "&docVersionNumber=" + document.getElementById('number').value + "&reasonsForChange=" + document.getElementById('reason').value + '&changeRequestApprovedBy=' + document.getElementById('approved').value).then(response => {
+    axios.post('http://localhost:3000/api/users?docVersionNumber=' + document.getElementById('number').value + "&reasonsForChange=" + document.getElementById('reason').value + '&changeRequestApprovedBy=' + document.getElementById('approved').value + '&dateOfChagneRequest' + document.getElementById('date').value + "&proposedChange=" + document.getElementById('proposed').value + "&existingSystem=" + document.getElementById('existing').value).then(response => {
       console.log(response);
       this.setState({ completionstatus: response.data });
     }).catch(err => {
@@ -44,17 +44,23 @@ class ProfilePage extends React.Component {
         null,
         "SIC Control"
       ),
-      "Current Document version Number ",
+      "Current Document version Number: ",
       React.createElement("input", { type: "text", id: "number" }),
       React.createElement("br", null),
-      "Reason(s) for Change ",
+      "Reason(s) for Change : ",
       React.createElement("input", { type: "text", id: "reason" }),
       React.createElement("br", null),
       "Change request approved by: ",
       React.createElement("input", { type: "text", id: "approved" }),
       React.createElement("br", null),
-      "Enter the name",
-      React.createElement("input", { type: "text", id: "name" }),
+      "Date of change request : ",
+      React.createElement("input", { type: "text", id: "date" }),
+      React.createElement("br", null),
+      "Proposed change : ",
+      React.createElement("input", { type: "text", id: "proposed" }),
+      React.createElement("br", null),
+      "existingSystem : ",
+      React.createElement("input", { type: "text", id: "existing" }),
       React.createElement("br", null),
       React.createElement(
         "button",

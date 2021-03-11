@@ -8,11 +8,14 @@ let userCollection = [];
 router.post('/', (req, res)=>{
   
     let newUser = new User({
-  "name" : req.query.name,
+  
   
   "docVersionNumber":req.query.docVersionNumber,
   "reasonsForChange": req.query.reasonsForChange,
   "changeRequestApprovedBy":req.query.changeRequestApprovedBy,
+  "dateOfChagneRequest" : req.query.dateOfChagneRequest,
+  "proposedChange":req.query.proposedChange,
+  "existingSystem":req.query.existingSystem,
 
     })
 
