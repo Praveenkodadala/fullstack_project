@@ -5,9 +5,21 @@ const user = new mongoose.Schema({
 name :{
     type: String,
 },
-gender:{
-    type: String,
+
+docVersionNumber: {
+    type : String
+},
+
+reasonsForChange:{
+type : String
+},
+
+changeRequestApprovedBy:{
+    type: String
 }
+
+
+
     
 })
 

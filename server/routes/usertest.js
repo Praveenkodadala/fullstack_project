@@ -9,7 +9,11 @@ router.post('/', (req, res)=>{
   
     let newUser = new User({
   "name" : req.query.name,
-  "gender" : req.query.gender
+  
+  "docVersionNumber":req.query.docVersionNumber,
+  "reasonsForChange": req.query.reasonsForChange,
+  "changeRequestApprovedBy":req.query.changeRequestApprovedBy,
+
     })
 
     userCollection.push(newUser);

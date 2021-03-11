@@ -1,6 +1,5 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { NavBar } from './NavBar';
 import axios from "axios";
 
 class ProfilePage extends React.Component {
@@ -26,7 +25,7 @@ class ProfilePage extends React.Component {
 
   postDataToServer() {
 
-    axios.post('http://localhost:3000/api/users?name=' + document.getElementById('name').value + "&gender=" + document.getElementById('gender').value).then(response => {
+    axios.post('http://localhost:3000/api/users?name=' + document.getElementById('name').value + "&docVersionNumber=" + document.getElementById('number').value + "&reasonsForChange=" + document.getElementById('reason').value + '&changeRequestApprovedBy=' + document.getElementById('approved').value).then(response => {
       console.log(response);
       this.setState({ completionstatus: response.data });
     }).catch(err => {
@@ -40,13 +39,22 @@ class ProfilePage extends React.Component {
     return React.createElement(
       "div",
       null,
-      React.createElement(NavBar, null),
+      React.createElement(
+        "h1",
+        null,
+        "SIC Control"
+      ),
+      "Current Document version Number ",
+      React.createElement("input", { type: "text", id: "number" }),
+      React.createElement("br", null),
+      "Reason(s) for Change ",
+      React.createElement("input", { type: "text", id: "reason" }),
+      React.createElement("br", null),
+      "Change request approved by: ",
+      React.createElement("input", { type: "text", id: "approved" }),
       React.createElement("br", null),
       "Enter the name",
       React.createElement("input", { type: "text", id: "name" }),
-      React.createElement("br", null),
-      "Enter the gender",
-      React.createElement("input", { type: "text", id: "gender" }),
       React.createElement("br", null),
       React.createElement(
         "button",

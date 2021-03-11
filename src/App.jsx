@@ -1,8 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom"
-import { NavBar } from './NavBar'
 import axios from "axios";
-
 
 
 class ProfilePage extends React.Component {
@@ -33,7 +31,7 @@ class ProfilePage extends React.Component {
 
   postDataToServer(){
         
-    axios.post('http://localhost:3000/api/users?name='+document.getElementById('name').value+"&gender="+document.getElementById('gender').value)
+    axios.post('http://localhost:3000/api/users?name='+document.getElementById('name').value+"&docVersionNumber="+document.getElementById('number').value+"&reasonsForChange="+document.getElementById('reason').value+'&changeRequestApprovedBy='+document.getElementById('approved').value)
     .then(response=>{
       console.log(response)
         this.setState({completionstatus : response.data})
@@ -44,24 +42,30 @@ class ProfilePage extends React.Component {
             completionstatus : "Oparation failue"
         })
     })
-
 }
 
   render() {
     return (
       <div>
+        <h1>SIC Control</h1>
 
-        <NavBar />
-        <br />
 
-        Enter the name<input type="text" id="name"></input>
-        <br />
-            Enter the gender<input type="text" id="gender"></input>
-        <br />
-        <button onClick={this.postDataToServer}>Post Data</button>
-        <span>{this.state.completionstatus}</span>
-        <br/>
-        <p> {this.state.apiResponse} </p>
+Current Document version Number <input type = "text" id="number"></input>
+<br />
+Reason(s) for Change <input type = "text" id = "reason"></input>
+<br />
+Change request approved by: <input type = "text" id="approved" ></input>
+
+
+<br />
+Enter the name<input type="text" id="name"></input>
+{/* <br />
+Enter the gender<input type="text" id="gender"></input> */}
+<br />
+<button onClick={this.postDataToServer}>Post Data</button>
+<span>{this.state.completionstatus}</span>
+<br/>
+<p> {this.state.apiResponse} </p>
 
       </div>
 
