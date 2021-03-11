@@ -6,13 +6,12 @@ class ProfilePage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-
-      completionstatus: "Hello",
+      completionstatus: "",
       apiResponse: "check"
-
     };
 
     this.postDataToServer = this.postDataToServer.bind(this);
+    this.callAPI = this.callAPI.bind(this);
   }
 
   callAPI() {

@@ -22,8 +22,9 @@ router.post('/', (req, res)=>{
     userCollection.push(newUser);
 
     newUser.save()
-    .then(data => res.json(data))
-    .catch(err=>{
+    .then(data => {
+         res.send("User successfully added");
+    }).catch(err=>{
         console.log(err)
         // res.status(400).json({
         //     message: "failed to save users"
@@ -31,7 +32,7 @@ router.post('/', (req, res)=>{
 
     })
 
-    return res.send("User successfully added");
+   
 
 })
 
